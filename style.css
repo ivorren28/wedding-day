@@ -1,0 +1,571 @@
+/* ENVELOPE OVERLAY */
+/* Envelope */
+#envelope {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  height: 220px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+/* Flap animation */
+#envelope .flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 175px solid transparent;
+  border-right: 175px solid transparent;
+  border-bottom: 100px solid #3a463cb0; /* flap color */
+  transform-origin: top center;
+  transition: transform 1s ease;
+  
+}
+
+/* Open flap */
+#envelope.open .flap {
+  transform: rotateX(180deg);
+}
+
+/* Card inside envelope */
+#envelope .card {
+  width: 100%;
+  height: 100%;
+  background: url('./images/envelop.png') center/cover no-repeat;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Playfair Display', serif;
+  padding-top: 25%;
+  color: black;
+  font-size: 75%;
+  
+}
+
+/* Hide website initially */
+#mainContent {
+  display: none;
+}
+
+
+
+
+
+
+/* =====================
+   RESET & BASE
+===================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Josefin Sans', sans-serif;
+  background: #f7faf5;
+  color: #2f3e2f;
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  width: 100%;
+}
+
+/* =====================
+   SECTIONS
+===================== */
+.section {
+  padding: 90px 10%;
+}
+
+.section-soft {
+  background: #e8f1e5;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* =====================
+   HERO
+===================== */
+.hero {
+  position: relative;
+  height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
+    url('./images/together.jpg')
+    center / cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  color: #fff;
+  animation: fadeUp 1.4s ease forwards;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  margin-top: 15px;
+  font-size: 1.2rem;
+}
+
+/* Floral Decorations */
+.floral {
+  position: absolute;
+  width: 220px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+.floral-left {
+  top: 20px;
+  left: 20px;
+}
+
+.floral-right {
+  top: 20px;
+  right: 20px;
+  transform: scaleX(-1);
+}
+
+/* =====================
+   STORY
+===================== */
+.story {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+
+.story-image {
+  border-radius: 18px;
+}
+
+.story-text {
+  font-size: 1.1rem;
+}
+
+/* =====================
+   GALLERY
+===================== */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 16px;
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,.2);
+}
+
+
+
+
+/* =====================
+   PROGRAM
+===================== */
+.verse {
+  text-align: center;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.verse span {
+  display: block;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+
+.program {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+}
+
+.program-card {
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+
+.program-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+
+.program-card img {
+  height: 220px;
+  object-fit: cover;
+}
+
+.program-card h3 {
+  font-family: 'Playfair Display', serif;
+  margin: 20px 0 10px;
+}
+
+.program-card p {
+  margin-bottom: 10px;
+}
+
+/* =====================
+   MAP
+===================== */
+.map iframe {
+  width: 100%;
+  height: 450px;
+  border: none;
+  border-radius: 20px;
+}
+
+/* =====================
+   RSVP
+===================== */
+.rsvp {
+  background:
+    linear-gradient(rgba(0,0,0,.100), rgba(0,0,0,.500)),
+    url('./images/floral.png')
+    center / cover no-repeat;
+  padding: 80px;
+  border-radius: 25px;
+  text-align: center;
+  color: #fff;
+}
+
+.rsvp input {
+  padding: 14px;
+  width: 260px;
+  border-radius: 8px;
+  border: none;
+  margin: 10px 0;
+}
+
+.rsvp button {
+  padding: 14px 30px;
+  border-radius: 8px;
+  border: none;
+  background: #6b8e23;
+  color: #fff;
+  cursor: pointer;
+  transition: transform .3s ease, background .3s ease;
+}
+
+.rsvp button:hover {
+  background: #5a7d1f;
+  transform: scale(1.05);
+}
+
+/* =====================
+   FOOTER
+===================== */
+.footer {
+  text-align: center;
+  padding: 30px;
+  font-size: .9rem;
+}
+
+/* =====================
+   SCROLL EFFECT
+===================== */
+.animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all .9s ease;
+}
+
+.animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================
+   KEYFRAMES
+===================== */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollGallery {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ===================== Slideshow Styles ===================== */
+/* Zoom-out animation for each slide */
+.slide img {
+  width: 100%;
+  height: 450px; /* adjust as needed */
+  object-fit: cover;
+  animation: zoomOut 4s ease-in-out forwards;
+}
+
+/* Keyframes for zoom-out */
+@keyframes zoomOut {
+  from {
+    transform: scale(1.2); /* start slightly zoomed in */
+  }
+  to {
+    transform: scale(1);   /* end at normal size */
+  }
+}
+
+/* ===================== Slideshow Styles (Updated) ===================== */
+.slideshow-container {
+  position: relative;
+  max-width: 700px; /* adjust box size */
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0,0,0,.2);
+  background-color: #f7faf5; /* color behind image */
+}
+
+.slide {
+  display: none;
+}
+
+/* Show full image */
+.slide img {
+  width: 100%;
+  height: 450px; /* adjust height */
+  object-fit: contain; /* <-- important to see full image */
+  animation: zoomOut 4s ease-in-out forwards;
+  background-color: #f7faf5; /* optional if image has transparent sides */
+}
+
+/* Fade animation */
+.fade {
+  animation: fadeEffect 1s ease-in-out;
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* Zoom-out animation */
+@keyframes zoomOut {
+  from { transform: scale(1.2); } /* start slightly zoomed in */
+  to { transform: scale(1); }     /* end at normal size */
+}
+
+/* Navigation Arrows */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 12px;
+  margin-top: -22px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 50%;
+  user-select: none;
+  background: rgba(0,0,0,0.4);
+  transition: background 0.3s;
+}
+
+.prev:hover, .next:hover {
+  background: rgba(0,0,0,0.7);
+}
+
+.prev { left: 15px; }
+.next { right: 15px; }
+
+/* Dots */
+.dot {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin: 0 6px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+.active, .dot:hover {
+  background-color: #6b8e23;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .slide img { height: 300px; }
+}
+@media (max-width: 480px) {
+  .slide img { height: 220px; }
+}
+
+
+
+
+/* =====================
+   📱 TABLET & MOBILE
+===================== */
+@media (max-width: 768px) {
+
+  /* SECTIONS */
+  .section {
+    padding: 70px 6%;
+  }
+
+  .section-title {
+    font-size: 2.1rem;
+    margin-bottom: 35px;
+  }
+
+  /* HERO */
+  .hero h1 {
+    font-size: 2.6rem;
+    letter-spacing: 1px;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .floral {
+    width: 140px;
+  }
+
+  .floral-left,
+  .floral-right {
+    top: 10px;
+  }
+
+  /* STORY */
+  .story {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    text-align: center;
+  }
+
+  .story-text {
+    font-size: 1rem;
+  }
+
+  /* GALLERY */
+  .gallery img {
+    height: 220px;
+  }
+
+  /* MAP */
+  .map iframe {
+    height: 320px;
+  }
+
+  /* RSVP */
+  .rsvp {
+    padding: 60px 25px;
+  }
+
+  .rsvp input {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* =====================
+   📱 SMALL PHONES
+===================== */
+@media (max-width: 480px) {
+
+  /* HERO */
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero p {
+    font-size: .95rem;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 60px 5%;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  /* FLORALS */
+  .floral {
+    width: 110px;
+    opacity: 0.7;
+  }
+
+  /* GALLERY */
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery img {
+    height: 200px;
+  }
+
+  /* PROGRAM */
+  .program {
+    gap: 25px;
+  }
+
+  .program-card img {
+    height: 180px;
+  }
+
+  /* RSVP */
+  .rsvp {
+    padding: 50px 20px;
+  }
+
+  .rsvp button {
+    width: 100%;
+    max-width: 260px;
+  }
+}
+
